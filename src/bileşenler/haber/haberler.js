@@ -115,3 +115,102 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+
+const haberYapici = (haber) => {
+  const card = document.createElement("div");
+  card.className = "article";
+
+  const baslik = document.createElement("h2");
+  baslik.textContent = haber.baslik;
+  card.append(baslik);
+
+  const tarih = document.createElement("p");
+  tarih.classList.add("tarih");
+  tarih.textContent = haber.tarih;
+  card.append(tarih);
+
+  const par1 = document.createElement("p");
+  par1.textContent = haber.ilkParagraf;
+  card.append(par1);
+
+  const par2 = document.createElement("p");
+  par2.textContent = haber.ikinciParagraf;
+  card.append(par2);
+
+  const par3 = document.createElement("p");
+  par3.textContent = haber.ucuncuParagraf;
+  card.append(par3);
+
+  const button = document.createElement("button");
+  button.textContent = "+";
+  button.classList.add("expandButton");
+  card.append(button);
+
+  button.addEventListener("click", () => {
+    const openbutton = document.querySelector(".article-open");
+    if (openbutton && openbutton != button.parentElement) {
+      openbutton.classList.remove("article-open");
+      console.log(openbutton != button.parentElement);
+    }
+    button.parentElement.classList.toggle("article-open");
+  });
+
+  return card;
+};
+
+data.forEach((item) => {
+  document.querySelector("div.articles").append(haberYapici(item));
+});
+
+/* const haberYapici = (baslik, tarih, paragraf1, paragraf2, paragraf3) => {
+  const card = document.createElement("div");
+  card.className = "article";
+
+  const hbrbslk = document.createElement("h2");
+  hbrbslk.textContent = baslik;
+  card.append(hbrbslk);
+
+  const trh = document.createElement("p");
+  trh.className = "tarih";
+  trh.textContent = tarih;
+  card.append(trh);
+
+  const par1 = document.createElement("p");
+  par1.textContent = paragraf1;
+  card.append(par1);
+
+  const par2 = document.createElement("p");
+  par2.textContent = paragraf2;
+  card.append(par2);
+
+  const par3 = document.createElement("p");
+  par3.textContent = paragraf3;
+  card.append(par3);
+
+  const expandButton = document.createElement("button");
+  expandButton.className = "expandButton";
+  expandButton.textContent = "+";
+  card.append(expandButton);
+
+  document
+    .querySelector("button.expandButton")
+    .addEventListener("click", () => {
+      document.querySelector("div.article").classList.toggle("article-open");
+    });
+
+  return card;
+};
+
+const mainarticles = document.querySelector("div.articles");
+
+data.forEach((veri) => {
+  const aradd = haberYapici(
+    veri.baslik,
+    veri.tarih,
+    veri.ilkParagraf,
+    veri.ikinciParagraf,
+    veri.ucuncuParagraf
+  );
+  mainarticles.append(aradd);
+});
+ */
